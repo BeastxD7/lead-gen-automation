@@ -61,4 +61,11 @@ uv run pytest
 ```
 
 ## 🇮🇳 Made in Bharat
+
 Anvesh is built to empower freelancers and small agencies worldwide by providing professional-grade tools at zero cost.
+
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
