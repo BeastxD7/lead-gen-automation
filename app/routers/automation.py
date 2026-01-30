@@ -1,8 +1,11 @@
-from fastapi import APIRouter, BackgroundTasks, HTTPException
+from fastapi import APIRouter, BackgroundTasks, Depends
 from fastapi.responses import FileResponse
 from app.models.automation import ScrapeRequest, AutomationRequest
+from app.models.api_key import APIKeyData
 from app.services.scraper import scrape_google_maps
-from app.db import get_all_leads
+from app.db import get_all_leads, log_usage
+from app.middleware.auth import get_api_key
+from app.helpers import api_success, api_error
 import csv
 import os
 import uuid
@@ -54,17 +57,24 @@ def background_task_scraper(task_id: str, request: ScrapeRequest):
         print(f"🏁 Automation {task_id} Finished. Status: {TASKS[task_id]['status']}")
 
 @router.post("/automation")
-def handle_automation(request: AutomationRequest, background_tasks: BackgroundTasks):
+def handle_automation(
+    request: AutomationRequest,
+    background_tasks: BackgroundTasks,
+    api_key: APIKeyData = Depends(get_api_key)
+):
     action = request.action.lower()
+    
+    # Log the API usage
+    log_usage(api_key.id, "/automation", 0)
     
     if action == "start":
         if not request.config:
-            raise HTTPException(status_code=400, detail="Config is required to start automation.")
+            return api_error("Config is required to start automation", status_code=400)
         
         task_id = str(uuid.uuid4())
         TASKS[task_id] = {
             "id": task_id,
-            "config": request.config,
+            "config": request.config.model_dump(),
             "running": True,
             "stop": False,
             "status": "idle",
@@ -72,25 +82,9 @@ def handle_automation(request: AutomationRequest, background_tasks: BackgroundTa
         }
         
         background_tasks.add_task(background_task_scraper, task_id, request.config)
-        return {
-            "status": "success", 
-            "message": "Automation started.", 
-            "task_id": task_id
-        }
+        return api_success("Automation started", {"task_id": task_id}, status_code=201)
 
     elif action == "stop":
-        # If task_id is provided in request (we need to update model or check body), stop that one.
-        # But AutomationRequest logic needs check. 
-        # For now, let's look for a task_id if we can, or stop ALL running tasks as a fallback/safety?
-        # User asked for ID based checking. Let's assume they might send ID to stop too.
-        # Since AutomationRequest doesn't have task_id field explicitly defined yet in the previous step,
-        # we will rely on a new optional field or query param?
-        # Actually, let's just stop the *latest* running one if no ID, or add ID support.
-        # Simpler: Modify AutomationRequest in next step. For now, let's assume we stop ALL running tasks 
-        # if no specific ID mechanism is easy without model change. 
-        # WAIT: I can update the model in the same file if it was defined here, but it is imported.
-        # I will implement a "stop all" for now, or finding the active one.
-        
         count_stopped = 0
         for tid, task in TASKS.items():
             if task["running"]:
@@ -98,30 +92,32 @@ def handle_automation(request: AutomationRequest, background_tasks: BackgroundTa
                 count_stopped += 1
         
         if count_stopped == 0:
-            return {"status": "ignored", "message": "No running automation found."}
+            return api_success("No running automation found", {"tasks_stopped": 0})
             
-        return {"status": "success", "message": f"Stop signal sent to {count_stopped} tasks."}
+        return api_success(f"Stop signal sent to {count_stopped} tasks", {"tasks_stopped": count_stopped})
     
     else:
-        raise HTTPException(status_code=400, detail="Invalid action. Use 'start' or 'stop'.")
+        return api_error("Invalid action. Use 'start' or 'stop'", status_code=400)
 
 @router.get("/status/{task_id}")
-def get_task_status(task_id: str):
+def get_task_status(task_id: str, api_key: APIKeyData = Depends(get_api_key)):
     task = TASKS.get(task_id)
     if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return task
+        return api_error("Task not found", status_code=404)
+    return api_success("Task status retrieved", task)
 
 @router.get("/status")
-def get_all_status():
-    return TASKS
+def get_all_status(api_key: APIKeyData = Depends(get_api_key)):
+    return api_success("All tasks retrieved", TASKS)
 
 @router.get("/export")
-def export_leads():
+def export_leads(api_key: APIKeyData = Depends(get_api_key)):
     """Exports all leads from the database to a CSV file."""
+    log_usage(api_key.id, "/export", 0)
+    
     leads = get_all_leads()
     if not leads:
-        return {"message": "No data found."}
+        return api_success("No data found", {"count": 0})
     
     os.makedirs("data", exist_ok=True)
     filename = "data/all_leads_export.csv"

@@ -74,6 +74,10 @@ def init_db():
                 ''')
                 conn.commit()
         print("✅ PostgreSQL Table 'leads' initialized.")
+        
+        # Initialize API key tables
+        from app.db.api_keys import create_tables as create_api_key_tables
+        create_api_key_tables()
     except Exception as e:
         print(f"❌ Table Init Error: {e}")
 
