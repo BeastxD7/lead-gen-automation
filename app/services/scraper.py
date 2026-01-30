@@ -14,7 +14,7 @@ def scrape_google_maps(industry: str, location: str, total: int = -1, stop_signa
     results = []
     
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=False)
         
         # 🟢 FIX 1: Set Timezone to reduce "Near Me" bias (using Toronto/NY as generic NA)
         context = browser.new_context(
@@ -260,28 +260,13 @@ def scrape_google_maps(industry: str, location: str, total: int = -1, stop_signa
                         
                         # Fallback: if popup not found, check if main panel updated
                         if not panel:
-                            main_h1 = page.query_selector('h1.DUwDvf')
-                            if main_h1 and expected_name:
-                                main_h1_text = main_h1.inner_text() or ""
-                                # Normalize both strings similarly to the fuzzy match logic above
-                                def _normalize_name(text: str) -> str:
-                                    return (
-                                        text.replace("’", "'")
-                                            .replace(".", "")
-                                            .strip()
-                                            .lower()
-                                    )
-                                normalized_expected = _normalize_name(expected_name)
-                                normalized_main = _normalize_name(main_h1_text)
-                                if normalized_expected and normalized_expected in normalized_main:
-                                    print("      ... Using main page as panel.")
-                                    panel = page
-                                else:
-                                    print(f"      ⚠️ Panel not found for '{expected_name}' after wait. Skipping.")
-                                    continue
-                            else:
-                                print(f"      ⚠️ Panel not found for '{expected_name}' after wait. Skipping.")
-                                continue
+                             main_h1 = page.query_selector('h1.DUwDvf')
+                             if main_h1 and expected_name in main_h1.inner_text():
+                                 print("      ... Using main page as panel.")
+                                 panel = page
+                             else:
+                                 print(f"      ⚠️ Panel not found for '{expected_name}' after wait. Skipping.")
+                                 continue
                         
                         # --- SCRAPE DETAILS (Name is already found above) ---
                         # We use 'name' from the sync block above.
@@ -367,9 +352,8 @@ def scrape_google_maps(industry: str, location: str, total: int = -1, stop_signa
                         # Look for the specific "Claim this business" text or link
                         claim_btn = page.query_selector('a[aria-label*="Claim this business"]')
                         if not claim_btn:
-                            claim_text_locator = page.get_by_text("Claim this business")
-                            if claim_text_locator.count() > 0:
-                                is_claimed = False  # Button exists, so it's NOT claimed
+                            claim_text_el = page.query_selector("text=Claim this business")
+                            if claim_text_el: is_claimed = False # Button exists, so it's NOT claimed
                         else:
                             is_claimed = False # Button found
 
@@ -427,7 +411,7 @@ def scrape_google_maps(industry: str, location: str, total: int = -1, stop_signa
                         # --- NEW: Close the pop-up if it was used ---
                         if panel != page: # Only close if we used the pop-up panel
                             try:
-                                close_button = page.query_selector('button[aria-label="Close"]')
+                                close_button = panel.query_selector('button[aria-label="Close"]')
                                 if close_button:
                                     close_button.click()
                                     page.wait_for_timeout(500) # Give it a moment to close
