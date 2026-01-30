@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx"
   },
