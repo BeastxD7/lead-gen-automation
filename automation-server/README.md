@@ -40,7 +40,13 @@ The core backend automation engine for Anvesh, built with FastAPI and Playwright
     ADMIN_SECRET=your-secure-secret
     ```
 
-3.  **Run the Server**
+3.  **Start Database (Docker)**
+    Run the database service in the background:
+    ```bash
+    docker compose up -d db
+    ```
+
+4.  **Run the Server**
     ```bash
     uv run uvicorn app.main:app --reload
     ```
