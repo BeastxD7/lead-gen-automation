@@ -352,8 +352,9 @@ def scrape_google_maps(industry: str, location: str, total: int = -1, stop_signa
                         # Look for the specific "Claim this business" text or link
                         claim_btn = page.query_selector('a[aria-label*="Claim this business"]')
                         if not claim_btn:
-                            claim_text_el = page.query_selector("text=Claim this business")
-                            if claim_text_el: is_claimed = False # Button exists, so it's NOT claimed
+                            claim_text_locator = page.get_by_text("Claim this business")
+                            if claim_text_locator.count() > 0:
+                                is_claimed = False  # Button exists, so it's NOT claimed
                         else:
                             is_claimed = False # Button found
 
