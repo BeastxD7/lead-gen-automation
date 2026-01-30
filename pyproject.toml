@@ -9,6 +9,7 @@ dependencies = [
     "playwright>=1.57.0",
     "psycopg[binary]>=3.3.2",
     "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
     "pytest>=9.0.2",
     "python-dotenv>=1.2.1",
     "uvicorn>=0.40.0",
