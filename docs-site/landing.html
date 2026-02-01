@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anvesh - Premium Lead Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#334155",
+                        accent: "#8b5cf6", // Slightly more purple for premium feel
+                        "dark-bg": "#0B0B0E", // Deeper charcoal
+                        "dark-surface": "#16161A",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 80px -20px rgba(139, 92, 246, 0.4)',
+                        'subtle-glow': '0 0 40px -10px rgba(139, 92, 246, 0.15)',
+                        'card-glow': '0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.4)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .glass-panel {
+                @apply bg-white/[0.02] backdrop-blur-md border border-white/[0.08];
+            }
+            .glass-card-dark {
+                background: linear-gradient(180deg, rgba(22, 22, 26, 0.8) 0%, rgba(11, 11, 14, 0.9) 100%);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .grid-bg {
+                background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .text-glow {
+                text-shadow: 0 0 60px rgba(139, 92, 246, 0.3);
+            }
+            .stat-card {
+                @apply flex flex-col items-center justify-center p-8 rounded-[2rem] bg-[#131316] border border-white/[0.06] shadow-card-glow relative overflow-hidden transition-transform duration-300 hover:-translate-y-1;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-400 bg-dark-bg selection:bg-indigo-500/30 selection:text-white">
+<section class="relative w-full bg-dark-bg text-white overflow-hidden flex flex-col items-center pt-32 pb-24">
+<div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+<div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+<div class="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+<div class="max-w-5xl mx-auto space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-6">
+<span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+<span class="text-[11px] font-semibold text-indigo-300 tracking-[0.15em] uppercase">The New Standard in Data</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-medium tracking-tight leading-[1.05] text-white text-glow relative z-10">
+                Quiet Precision. <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">Infinite Scale.</span>
+</h1>
+<p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+                Anvesh automates lead discovery through deep-web intelligence. Sophisticated scraping, simplified for global teams.
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+<a class="px-10 py-4 bg-white text-black rounded-full font-semibold hover:bg-indigo-50 transition-all shadow-glow flex items-center gap-2" href="#">
+                    Start Discovery
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-20 -mt-10 mb-24">
+<div class="container mx-auto px-6 max-w-6xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="stat-card">
+<div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-bl-[4rem] pointer-events-none"></div>
+<h3 class="text-4xl md:text-5xl font-semibold text-white mb-2 tracking-tight">$0</h3>
+<p class="text-sm font-medium text-slate-500 uppercase tracking-wider">Cost for Life</p>
+<p class="text-xs text-slate-600 mt-2 text-center max-w-[150px]">Open source core available for everyone forever.</p>
+</div>
+<div class="stat-card ring-1 ring-indigo-500/20 bg-[#16161A]">
+<div class="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none"></div>
+<h3 class="text-4xl md:text-5xl font-semibold text-white mb-2 tracking-tight">99.8%</h3>
+<p class="text-sm font-medium text-indigo-300 uppercase tracking-wider">Data Precision</p>
+<p class="text-xs text-slate-600 mt-2 text-center max-w-[150px]">Verified against multiple trusted sources.</p>
+</div>
+<div class="stat-card">
+<div class="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/5 rounded-tr-[4rem] pointer-events-none"></div>
+<h3 class="text-4xl md:text-5xl font-semibold text-white mb-2 tracking-tight">1M+</h3>
+<p class="text-sm font-medium text-slate-500 uppercase tracking-wider">Leads Scraped</p>
+<p class="text-xs text-slate-600 mt-2 text-center max-w-[150px]">Processed daily by our global node network.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-dark-bg relative">
+<div class="container mx-auto px-6 max-w-6xl">
+<div class="flex flex-col lg:flex-row gap-16 items-center">
+<div class="lg:w-1/2">
+<h2 class="text-4xl md:text-5xl font-medium text-white leading-tight tracking-tight mb-6">
+                    Why choose <br/>Anvesh?
+                </h2>
+<p class="text-lg text-slate-500 font-light mb-8">
+                    We replace manual research with autonomous agents. Stop hunting for leads and start closing them.
+                </p>
+<div class="grid grid-cols-1 gap-8">
+<div class="flex gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h4 class="text-white font-medium text-lg">Deep-Web Intelligence</h4>
+<p class="text-slate-500 text-sm mt-1 font-light">Access data layers invisible to standard search engines.</p>
+</div>
+</div>
+<div class="flex gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">map</span>
+</div>
+<div>
+<h4 class="text-white font-medium text-lg">Google Maps Scraping</h4>
+<p class="text-slate-500 text-sm mt-1 font-light">Pinpoint local businesses with geographic precision.</p>
+</div>
+</div>
+<div class="flex gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">ios_share</span>
+</div>
+<div>
+<h4 class="text-white font-medium text-lg">One-Click CSV Export</h4>
+<p class="text-slate-500 text-sm mt-1 font-light">Instant compatibility with your CRM of choice.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="relative w-full aspect-square max-w-md mx-auto">
+<div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-purple-500/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 w-full h-full border border-white/[0.05] rounded-3xl bg-[#0E0E11] p-2 shadow-2xl overflow-hidden">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-indigo-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-dashed border-indigo-400/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+<div class="absolute top-[30%] left-[20%] w-3 h-3 bg-indigo-500 rounded-full shadow-[0_0_15px_rgba(99,102,241,1)]"></div>
+<div class="absolute bottom-[40%] right-[25%] w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_15px_rgba(168,85,247,1)]"></div>
+<div class="absolute top-[60%] left-[70%] w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+<line stroke="#6366f1" stroke-width="1" x1="30%" x2="70%" y1="30%" y2="60%"></line>
+<line stroke="#6366f1" stroke-width="1" x1="70%" x2="75%" y1="60%" y2="60%"></line>
+</svg>
+<div class="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Extraction Complete</p>
+<p class="text-[10px] text-slate-500">2,402 leads processed in 12s</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-[#0B0B0E] border-t border-white/[0.03]">
+<div class="container mx-auto px-6 max-w-6xl">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-medium text-white mb-4">How Anvesh Works</h2>
+<p class="text-slate-500 max-w-2xl mx-auto">From query to qualified leads in three simple steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card-dark p-8 rounded-[2rem] relative group hover:border-indigo-500/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-white font-bold mb-6 group-hover:bg-indigo-600 transition-colors">1</div>
+<h3 class="text-xl font-medium text-white mb-3">Configure Target</h3>
+<p class="text-sm text-slate-500 leading-relaxed mb-6">
+                    Define your ideal customer profile using simple natural language parameters.
+                </p>
+<div class="bg-[#0A0A0C] border border-white/5 rounded-xl p-3">
+<div class="text-[10px] text-slate-600 uppercase tracking-wider mb-1">Input</div>
+<div class="text-sm text-indigo-300 font-mono">"Bakeries in Canada"</div>
+</div>
+</div>
+<div class="glass-card-dark p-8 rounded-[2rem] relative group hover:border-indigo-500/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-white font-bold mb-6 group-hover:bg-indigo-600 transition-colors">2</div>
+<h3 class="text-xl font-medium text-white mb-3">Automated Hunt</h3>
+<p class="text-sm text-slate-500 leading-relaxed mb-6">
+                    Our intelligent nodes scan verify data points across multiple trusted sources.
+                </p>
+<div class="bg-[#0A0A0C] border border-white/5 rounded-xl p-3 h-[58px] flex items-center justify-center gap-1">
+<span class="w-1 h-4 bg-indigo-500/50 rounded-full animate-[pulse_1s_ease-in-out_infinite]"></span>
+<span class="w-1 h-6 bg-indigo-500/80 rounded-full animate-[pulse_1.2s_ease-in-out_infinite_0.1s]"></span>
+<span class="w-1 h-3 bg-indigo-500/40 rounded-full animate-[pulse_0.8s_ease-in-out_infinite_0.2s]"></span>
+<span class="text-xs text-slate-500 ml-2">Scanning...</span>
+</div>
+</div>
+<div class="glass-card-dark p-8 rounded-[2rem] relative group hover:border-indigo-500/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-[#1A1A1E] border border-white/10 flex items-center justify-center text-white font-bold mb-6 group-hover:bg-indigo-600 transition-colors">3</div>
+<h3 class="text-xl font-medium text-white mb-3">Export Leads</h3>
+<p class="text-sm text-slate-500 leading-relaxed mb-6">
+                    Download verified contact information instantly ready for your outreach campaigns.
+                </p>
+<div class="bg-[#0A0A0C] border border-white/5 rounded-xl p-3 flex items-center justify-between group-hover:bg-indigo-900/10 transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-400 text-sm">table_view</span>
+<span class="text-sm text-slate-300">leads_export.csv</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm">download</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-[#0B0B0E] relative overflow-hidden">
+<div class="container mx-auto px-6 max-w-4xl relative z-10 flex flex-col items-center">
+<div class="mb-16 text-center">
+<h2 class="text-3xl font-medium text-white tracking-tight mb-2">Built for Developers</h2>
+<p class="text-slate-500">Integrate our intelligence directly into your product.</p>
+</div>
+<div class="w-full bg-[#101013] rounded-[2rem] border border-white/[0.05] overflow-hidden shadow-2xl relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-indigo-500/5 blur-3xl pointer-events-none"></div>
+<div class="p-8 md:p-12 overflow-x-auto relative z-10">
+<div class="flex gap-2 mb-6 opacity-30">
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+</div>
+<pre class="font-mono text-sm md:text-base leading-loose text-slate-400"><span class="text-slate-600 select-none">$ </span><span class="text-indigo-400">curl</span> -X POST https://api.anvesh.ai/v1/automation \
+  -H <span class="text-teal-400">"Authorization: Bearer sk_live_..."</span> \
+  -d <span class="text-slate-300">'{
+    <span class="text-purple-300">"target"</span>: <span class="text-teal-300">"marketing-agencies"</span>,
+    <span class="text-purple-300">"location"</span>: <span class="text-teal-300">"NY"</span>,
+    <span class="text-purple-300">"filters"</span>: { <span class="text-teal-300">"min_employees"</span>: 10 }
+  }'</span>
+<span class="text-slate-600 select-none">// Response</span>
+<span class="text-slate-300">{</span>
+  <span class="text-purple-300">"status"</span>: <span class="text-teal-300">"success"</span>,
+  <span class="text-purple-300">"job_id"</span>: <span class="text-teal-300">"job_8f92a3..."</span>,
+  <span class="text-purple-300">"leads_found"</span>: <span class="text-teal-300">1450</span>
+<span class="text-slate-300">}</span></pre>
+</div>
+</div>
+<div class="mt-12">
+<a class="text-xs uppercase tracking-[0.2em] font-semibold text-slate-500 hover:text-white transition-colors border-b border-transparent hover:border-indigo-500 pb-1" href="#">
+                Read Documentation
+            </a>
+</div>
+</div>
+</section>
+<footer class="bg-[#0B0B0E] text-slate-600 py-16 border-t border-white/[0.03]">
+<div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-indigo-600/10 rounded-full flex items-center justify-center text-indigo-400 border border-indigo-500/20">
+<span class="material-symbols-outlined text-sm">radar</span>
+</div>
+<span class="text-lg font-medium text-white tracking-tight">Anvesh</span>
+</div>
+<div class="flex gap-8 text-[11px] uppercase tracking-widest font-semibold">
+<a class="hover:text-indigo-400 transition-colors" href="#">Privacy</a>
+<a class="hover:text-indigo-400 transition-colors" href="#">Terms</a>
+<a class="hover:text-indigo-400 transition-colors" href="#">System</a>
+<a class="hover:text-indigo-400 transition-colors" href="#">Support</a>
+</div>
+<p class="text-[11px] uppercase tracking-widest font-medium opacity-50">© 2024</p>
+</div>
+</footer>
+</body></html>

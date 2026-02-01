@@ -2,3 +2,248 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import 'fumadocs-openapi/css/preset.css';
+
+/* ================================================================
+   FUMADOCS DARK THEME OVERRIDES - Match Landing Page Style
+   ================================================================ */
+
+/* Override Fumadocs CSS variables for dark mode */
+:root,
+.dark,
+[data-theme="dark"] {
+  --fd-background: #0B0B0E !important;
+  --fd-background-start-rgb: 11, 11, 14 !important;
+  --fd-muted: rgba(255, 255, 255, 0.06) !important;
+  --fd-card: rgba(22, 22, 26, 0.6) !important;
+  --fd-card-foreground: #e2e8f0 !important;
+  --fd-border: rgba(255, 255, 255, 0.06) !important;
+  --background: #0B0B0E !important;
+  --foreground: #e2e8f0 !important;
+}
+
+/* Background with indigo glow effect - matching landing page */
+html,
+body {
+  background-color: #0B0B0E !important;
+  min-height: 100vh;
+}
+
+/* Add the indigo glow effect at the top like landing page */
+body::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Grid pattern overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Light mode overrides */
+.light body::before,
+:root.light body::before {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+}
+
+.light html,
+.light body,
+:root.light body {
+  background-color: #ffffff !important;
+}
+
+.light body::after,
+:root.light body::after {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* Fumadocs Layout Overrides */
+.dark main,
+[data-theme="dark"] main {
+  background: transparent !important;
+}
+
+/* Sidebar with glass effect */
+.dark aside,
+.dark nav,
+.dark [class*="sidebar"],
+[data-theme="dark"] aside,
+[data-theme="dark"] nav {
+  background: rgba(11, 11, 14, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Content area */
+.dark article,
+[data-theme="dark"] article {
+  background: transparent !important;
+}
+
+/* Table of contents */
+.dark [class*="toc"],
+[data-theme="dark"] [class*="toc"] {
+  background: transparent !important;
+}
+
+/* ================================================================
+   NAVBAR / HEADER - Transparent with glass effect
+   ================================================================ */
+header,
+.dark header,
+[data-theme="dark"] header,
+nav[class*="nav"],
+.dark nav[class*="nav"],
+[class*="navbar"],
+.dark [class*="navbar"] {
+  background: rgba(11, 11, 14, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Fumadocs specific header */
+[class*="fd-layout"] > header,
+.dark [class*="fd-"] > header {
+  background: rgba(11, 11, 14, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* Override any solid background on wrapper divs */
+.dark div[class*="layout"],
+.dark div[class*="wrapper"],
+[data-theme="dark"] div[class*="layout"],
+[data-theme="dark"] div[class*="wrapper"] {
+  background: transparent !important;
+}
+
+/* Landing Page Custom Styles - Minimalist Theme with Light/Dark Support */
+
+/* Glass Panel - adapts to light/dark */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root[class~="light"] .glass-panel,
+.light .glass-panel {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Glass Card Dark */
+.glass-card-dark {
+  background: linear-gradient(180deg, rgba(22, 22, 26, 0.8) 0%, rgba(11, 11, 14, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root[class~="light"] .glass-card-dark,
+.light .glass-card-dark {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Grid Background */
+.grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+:root[class~="light"] .grid-bg,
+.light .grid-bg {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+/* Text Glow */
+.text-glow {
+  text-shadow: 0 0 60px rgba(139, 92, 246, 0.3);
+}
+
+:root[class~="light"] .text-glow,
+.light .text-glow {
+  text-shadow: none;
+}
+
+/* Shadows */
+.shadow-glow {
+  box-shadow: 0 0 80px -20px rgba(139, 92, 246, 0.4);
+}
+
+.shadow-subtle-glow {
+  box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.15);
+}
+
+.shadow-card-glow {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+:root[class~="light"] .shadow-card-glow,
+.light .shadow-card-glow {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Stat Card */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 2rem;
+  background: #131316;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+:root[class~="light"] .stat-card,
+.light .stat-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark/Light background utilities */
+.bg-dark-bg {
+  background-color: #0B0B0E;
+}
+
+:root[class~="light"] .bg-dark-bg,
+.light .bg-dark-bg {
+  background-color: #ffffff;
+}
+
+.bg-dark-surface {
+  background-color: #16161A;
+}
+
+:root[class~="light"] .bg-dark-surface,
+.light .bg-dark-surface {
+  background-color: #f8fafc;
+}
